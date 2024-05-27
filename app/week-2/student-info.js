@@ -6,8 +6,8 @@ export default function StudentInfo() {
       <Link className="underline" href="/">
         Return home
       </Link>
-
-      <h1>Hello, my name is Natalie Yeung!</h1>
+      <h1>Week 2: Student Information</h1>
+      <p>Hello, my name is Natalie Yeung!</p>
       <p>
         This is a link to my Github repository:{" "}
         <Link
