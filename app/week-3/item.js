@@ -1,4 +1,5 @@
-const LIST_STYLES = "capitalize m-4";
+const LIST_STYLES =
+  "capitalize m-4 bg-[#ff35a2] rounded-lg p-4 text-white max-w-[300px]";
 
 const Item = ({ name, quantity, category }) => {
   return (
