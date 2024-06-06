@@ -14,7 +14,7 @@ export default function Home() {
         Week 2 Assignment: Student Information
       </Link>
       <Link className={LINK_STYLES} href="week-3">
-        Week 3: Item List
+        Week 3 Assignment: Shopping List
       </Link>
     </main>
   );
