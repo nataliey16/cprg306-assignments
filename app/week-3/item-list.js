@@ -131,6 +131,11 @@ const ItemList = () => {
         quantity={item11.quantity}
         category={item11.category}
       />
+      <Item
+        name={item12.name}
+        quantity={item11.quantity}
+        category={item11.category}
+      />
     </div>
   );
 };
