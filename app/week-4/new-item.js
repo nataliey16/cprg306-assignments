@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
 
-import React from "react";
-
-const FORM_STYLES = "flex flex-col m-4 bg-gray-100 rounded-md";
-const INPUT_STYLE = "p-2 mx-0 my-2 rounded-md";
+const PAGE_STYLES =
+  "flex flex-col m-4 bg-gray-100 rounded-md max-w-[400px] content-center";
+const INPUT_STYLE =
+  "w-full p-2 mx-0  my-2 rounded-md border-2 border-[#293241]";
 
 //change this to props later - for now, just hardcode the item*********************
 const item = {
@@ -31,8 +31,8 @@ const NewItem = () => {
   };
 
   return (
-    <div className={FORM_STYLES}>
-      <form className="flex flex-col m-4">
+    <div className={PAGE_STYLES}>
+      <form className="flex flex-col m-4 ">
         <div>
           <input
             className={INPUT_STYLE}
@@ -40,6 +40,17 @@ const NewItem = () => {
             placeholder="Item name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
+          ></input>
+        </div>
+        <div className="columns-2 gap-1 flex-row flex">
+          <input
+            className={INPUT_STYLE}
+            type="number"
+            min="1"
+            max="99"
+            value={quantity} // need to convert this into a number before setting the state **********
+            onChange={(e) => setQuantity(e.target.value)}
             required
           ></input>
           <select
@@ -60,17 +71,6 @@ const NewItem = () => {
             <option>Household</option>
             <option>Other</option>
           </select>
-        </div>
-        <div>
-          <input
-            className={INPUT_STYLE}
-            type="number"
-            min="1"
-            max="99"
-            value={quantity} // need to convert this into a number before setting the state **********
-            onChange={(e) => setQuantity(e.target.value)}
-            required
-          ></input>
         </div>
       </form>
 
