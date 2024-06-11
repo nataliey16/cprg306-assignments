@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const PAGE_STYLES =
-  "flex flex-col m-4 bg-gray-100 rounded-md max-w-[400px] content-center";
+const PAGE_STYLES = "flex flex-col m-4 bg-gray-100 rounded-md max-w-[400px] ";
 const INPUT_STYLE =
   "w-full p-2 mx-0  my-2 rounded-md border-2 border-[#293241]";
 
@@ -22,17 +21,19 @@ const NewItem = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //log item in the console
-    // setName(item.name);
-    setCategory(item.category);
-    alert(`Item added: ${name}, quantity: ${quantity}, category: ${category}`);
-    console.log(item);
+
+    console.log({ name, quantity, category });
+    alert(`Item added: ${name}, Quantity: ${quantity}, Category: ${category}`);
 
     //reset the state - aka clear the form after I've added the item
+    setName("");
+    setCategory("Produce");
+    setQuantity(1);
   };
 
   return (
     <div className={PAGE_STYLES}>
-      <form className="flex flex-col m-4 ">
+      <form className="flex flex-col m-4">
         <div>
           <input
             className={INPUT_STYLE}
@@ -58,6 +59,7 @@ const NewItem = () => {
             placeholder={category}
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            required
           >
             <option>Produce</option>
             <option>Dairy</option>
