@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const PAGE_STYLES = "flex flex-col m-4 bg-gray-100 rounded-md max-w-[400px] ";
+const PAGE_STYLES = "flex flex-col m-4 bg-gray-200 rounded-md max-w-[400px] ";
 const INPUT_STYLE =
   "w-full p-2 mx-0  my-2 rounded-md border-2 border-[#293241]";
 
