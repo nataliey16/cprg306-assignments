@@ -19,6 +19,9 @@ export default function Home() {
       <Link className={LINK_STYLES} href="week-4">
         Week 4 Assignment: Add New Item
       </Link>
+      <Link className={LINK_STYLES} href="week-5">
+        Week 5: Add Functionality to Shopping List
+      </Link>
     </main>
   );
 }
