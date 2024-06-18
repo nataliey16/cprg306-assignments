@@ -10,7 +10,6 @@ const Item = ({ name, quantity, category }) => {
           Buy {quantity} in {category}
         </li>
       </ul>
-      {/* <Item name={name} quantity={quantity} category={category} /> */}
     </div>
   );
 };

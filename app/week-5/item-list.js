@@ -5,8 +5,9 @@ import items from "./items.json";
 
 const ItemList = () => {
   const [sortBy, setSortBy] = useState("name");
+  const [isSelectedStyle, setIsSelectedStyle] = useState(false);
 
-  //Sort items array
+  //1. Sort items array based on name or category
   const sortedItems = () => {
     return [...items].sort((itemA, itemB) => {
       if (sortBy == "name") {
@@ -14,7 +15,6 @@ const ItemList = () => {
       } else if (sortBy == "category") {
         return itemA.category.localeCompare(itemB.category);
       }
-      console.log(items);
     });
   };
 
@@ -23,21 +23,27 @@ const ItemList = () => {
       <div className="flex flex-row text-white">
         <p className="m-6">Sort by:</p>
         <button
-          className="bg-[#fb923c] rounded-md p-4 mx-4 mb-4"
+          className={
+            "rounded-md p-4 mx-4 mb-4 " +
+            (sortBy === "name" ? " bg-[#fb923c]" : "opacity-50 bg-[#fb923c]")
+          }
           value="name"
           onClick={() => setSortBy("name")}
         >
           Name
         </button>
         <button
-          className="bg-[#c2410c] rounded-md p-4 mx-4 mb-4"
+          className={
+            "rounded-md p-4 mx-4 mb-4 " +
+            (sortBy === "category"
+              ? " bg-[#c2410c]"
+              : "opacity-50 bg-[#c2410c]")
+          }
+          //bg-[#c2410c]
           value="category"
           onClick={() => setSortBy("category")}
         >
           Category
-        </button>
-        <button className="bg-[#7c2d12] rounded-md p-4 mx-4 mb-4">
-          Grouped Category
         </button>
       </div>
       <div>
