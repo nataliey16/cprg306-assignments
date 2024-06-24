@@ -5,13 +5,6 @@ const PAGE_STYLES = "flex flex-col m-4 bg-gray-200 rounded-md max-w-[400px] ";
 const INPUT_STYLE =
   "w-full p-2 mx-0  my-2 rounded-md border-2 border-[#293241]";
 
-//change this to props later - for now, just hardcode the item*********************
-const item = {
-  name: "apple",
-  category: "fruit",
-  quantity: 2,
-};
-
 const NewItem = ({ onAddItem }) => {
   //setVariables for - name, category, quantity
   const [name, setName] = useState(""); //default value is an empty string
@@ -22,7 +15,7 @@ const NewItem = ({ onAddItem }) => {
     e.preventDefault();
     //log item in the console
 
-    // Function to generate a random ID
+    // Function to generate a random ID for new item
     const generateId = () => {
       return Math.random().toString(36).subStr(2, 9) + Date.now().toString(36);
     };

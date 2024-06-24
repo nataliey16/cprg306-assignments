@@ -8,7 +8,7 @@ import { useState } from "react";
 const Page = () => {
   const [items, setItems] = useState(ItemsData);
 
-  //pass in a new object
+  //pass in a new object into the prev Items
   const handleAddItem = (newItem) => {
     setItems((prevItems) => [...prevItems, newItem]);
   };
