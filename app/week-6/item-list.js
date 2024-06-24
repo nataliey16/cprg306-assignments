@@ -1,9 +1,8 @@
 "use client";
 import { useState } from "react";
 import Item from "./item";
-import items from "./items.json";
 
-const ItemList = () => {
+const ItemList = ({ items }) => {
   const [sortBy, setSortBy] = useState("name");
 
   //1. Sort items array based on name or category

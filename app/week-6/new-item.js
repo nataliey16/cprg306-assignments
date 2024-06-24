@@ -22,12 +22,14 @@ const NewItem = ({ onAddItem }) => {
     e.preventDefault();
     //log item in the console
 
-    console.log({ name, quantity, category });
-    const item = { name, quantity, category };
+    // Function to generate a random ID
+    const generateId = () => {
+      return Math.random().toString(36).subStr(2, 9) + Date.now().toString(36);
+    };
+
+    const item = { id: generateId, name, quantity, category };
 
     onAddItem(item);
-
-    // alert(`Item added: ${name}, Quantity: ${quantity}, Category: ${category}`);
 
     //reset the state - aka clear the form after I've added the item
     setName("");
