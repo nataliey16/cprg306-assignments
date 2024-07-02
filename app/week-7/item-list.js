@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Item from "./item";
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items, onItemsSelect }) => {
   const [sortBy, setSortBy] = useState("name");
 
   //1. Sort items array based on name or category
@@ -14,6 +14,11 @@ const ItemList = ({ items }) => {
         return itemA.category.localeCompare(itemB.category);
       }
     });
+  };
+
+  const handleItemClick = (item) => {
+    // Handle the click event for an item
+    onItemsSelect(item);
   };
 
   return (
@@ -45,7 +50,7 @@ const ItemList = ({ items }) => {
       </div>
       <div>
         {sortedItems().map((item, index) => (
-          <Item key={index} {...item} />
+          <Item key={index} {...item} onSelect={() => handleItemClick(item)} />
         ))}
       </div>
     </div>

@@ -25,6 +25,9 @@ export default function Home() {
       <Link className={LINK_STYLES} href="week-6">
         Week 6: Interactive Shopping List
       </Link>
+      <Link className={LINK_STYLES} href="week-7">
+        Week 7: Display ingredients for each meal
+      </Link>
     </main>
   );
 }
