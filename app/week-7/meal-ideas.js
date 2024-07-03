@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 const MealIdeas = ({ ingredient }) => {
   const [meals, setMeals] = useState([]);
@@ -8,6 +7,7 @@ const MealIdeas = ({ ingredient }) => {
   const loadMealIdea = async () => {
     const fetchedMeals = await fetchMealIdeas(ingredient);
     setMeals(fetchedMeals);
+    console.log(fetchedMeals);
   };
 
   useEffect(() => {
@@ -15,20 +15,22 @@ const MealIdeas = ({ ingredient }) => {
   }, [ingredient]);
 
   return (
-    <div>
-      <h2>Meal Ideas</h2>
-      <p>Here are some meal ideas using ${ingredient}</p>
-      {meals.length > 0 ? (
-        <ul>
-          {meals.map((meal, index) => (
-            <li key={index.idMeal}>
-              {meal.strMeal}
-              <Image src={meal.strMealThumb} alt={strMeal} />
-            </li>
-          ))}
-        </ul>
+    <div className="flex flex-col text-white">
+      <h2 className="text-2xl px-4 pb-2">Meal Ideas</h2>
+      <p className="text-md p-4">Select an items to see meal ideas</p>
+      {Array.isArray(meals) && meals.length > 0 ? (
+        <>
+          <p className="text-md px-4">
+            Here are some meal ideas using {ingredient}:{" "}
+          </p>
+          <ul className="text-md p-4">
+            {meals.map((meal, index) => (
+              <li key={meal.idMeal || index}>{meal.strMeal}</li> // Use meal.idMeal for key if available, else use index
+            ))}
+          </ul>
+        </>
       ) : (
-        <p>No meal idea ideas found for `${ingredient}`</p>
+        <p>No meal ideas found for {ingredient}</p> // Display message if no meals found
       )}
     </div>
   );
@@ -41,11 +43,12 @@ const fetchMealIdeas = async (ingredient) => {
     const response = await fetch(
       `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
     );
+    console.log(response);
     if (!response.ok) {
       throw new Error("Failed to fetch API.");
     }
     const data = await response.json();
-    console.log(data);
+    console.log(data.meals);
     return data.meals;
   } catch (error) {
     console.error(error);
