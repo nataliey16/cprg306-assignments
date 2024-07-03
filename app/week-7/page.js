@@ -32,12 +32,24 @@ const Page = () => {
       <Link className="underline m-4 text-[#E0FBFC]" href="/">
         Return home{" "}
       </Link>
-      <h1 className="m-4 text-[#E0FBFC] text-bold text-4xl">
-        Interactive Shopping List
-      </h1>
-      <NewItem onAddItem={handleAddItem} />
-      <ItemList items={items} onItemSelect={handleItemSelect} />
-      <MealIdeas ingredient={selectedItemName} />
+      <div className="flex items-start">
+        {" "}
+        {/* Adjusted for flex display */}
+        <div className="column-1 flex-1">
+          {" "}
+          {/* Column 1 */}
+          <h1 className="m-4 text-[#E0FBFC] font-bold text-4xl">
+            Interactive Shopping List
+          </h1>
+          <NewItem onAddItem={handleAddItem} />
+          <ItemList items={items} onItemSelect={handleItemSelect} />
+        </div>
+        <div className="column-2 flex-1">
+          {" "}
+          {/* Column 2 */}
+          <MealIdeas ingredient={selectedItemName} />
+        </div>
+      </div>
     </div>
   );
 };

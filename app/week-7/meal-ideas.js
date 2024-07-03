@@ -17,25 +17,27 @@ const MealIdeas = ({ ingredient }) => {
   }, [ingredient]);
 
   return (
-    <div className="flex flex-col text-white">
-      <h2 className="text-2xl px-4 pb-2">Meal Ideas</h2>
-      <p className="text-md p-4">Select an items to see meal ideas</p>
-      {Array.isArray(meals) && meals.length > 0 ? (
-        <>
-          <p className="text-md px-4">
-            Here are some meal ideas using {ingredient}:{" "}
-          </p>
-          <ul className="text-md p-4">
-            {meals.map((meal, index) => (
-              <li key={meal.idMeal || index}>{meal.strMeal}</li> // Use meal.idMeal for key if available, else use index
-            ))}
-          </ul>
-        </>
-      ) : (
-        ingredient && (
-          <p className="text-md p-4">No meal ideas found for {ingredient}</p> // Display message if no meals found
-        )
-      )}
+    <div className="flex-1 max-w-sm m-2 flex-row text-white">
+      <div>
+        <h2 className="text-2xl px-4 pb-2">Meal Ideas</h2>
+        <p className="text-md p-4">Select an items to see meal ideas</p>
+        {Array.isArray(meals) && meals.length > 0 ? (
+          <>
+            <p className="text-md px-4">
+              Here are some meal ideas using {ingredient}:{" "}
+            </p>
+            <ul className="text-md p-4">
+              {meals.map((meal, index) => (
+                <li key={meal.idMeal || index}>{meal.strMeal}</li> // Use meal.idMeal for key if available, else use index
+              ))}
+            </ul>
+          </>
+        ) : (
+          ingredient && (
+            <p className="text-md p-4">No meal ideas found for {ingredient}</p> // Display message if no meals found
+          )
+        )}
+      </div>
     </div>
   );
 };
