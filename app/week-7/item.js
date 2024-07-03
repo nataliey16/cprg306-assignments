@@ -4,10 +4,8 @@ const LIST_STYLES =
 const Item = ({ name, quantity, category, onSelect }) => {
   return (
     <div>
-      <ul className={LIST_STYLES}>
-        <li className="text-lg" onClick={() => onSelect(name)}>
-          {name}
-        </li>
+      <ul className={LIST_STYLES} onClick={() => onSelect(name)}>
+        <li className="text-lg">{name}</li>
         <li>
           Buy {quantity} in {category}
         </li>

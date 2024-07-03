@@ -11,7 +11,9 @@ const MealIdeas = ({ ingredient }) => {
   };
 
   useEffect(() => {
-    loadMealIdea();
+    if (ingredient) {
+      loadMealIdea();
+    }
   }, [ingredient]);
 
   return (
@@ -30,7 +32,9 @@ const MealIdeas = ({ ingredient }) => {
           </ul>
         </>
       ) : (
-        <p>No meal ideas found for {ingredient}</p> // Display message if no meals found
+        ingredient && (
+          <p className="text-md p-4">No meal ideas found for {ingredient}</p> // Display message if no meals found
+        )
       )}
     </div>
   );
@@ -48,7 +52,6 @@ const fetchMealIdeas = async (ingredient) => {
       throw new Error("Failed to fetch API.");
     }
     const data = await response.json();
-    console.log(data.meals);
     return data.meals;
   } catch (error) {
     console.error(error);
