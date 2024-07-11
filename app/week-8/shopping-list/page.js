@@ -5,8 +5,12 @@ import NewItem from "./new-item";
 import ItemList from "./item-list";
 import ItemsData from "./items.json";
 import { useState } from "react";
+import { useUserAuth } from "../_utils/auth-context";
+import Image from "next/image";
+import GitHubSvg from "../../../public/svg/github.svg";
 
 const Page = () => {
+  const { user, gitHubSignIn } = useUserAuth();
   const [items, setItems] = useState(ItemsData);
   const [selectedItemName, setSelectedItemName] = useState("");
 
@@ -28,29 +32,45 @@ const Page = () => {
   };
 
   return (
-    <div>
-      <Link className="underline m-4 text-[#E0FBFC]" href="/">
-        Return home{" "}
-      </Link>
-      <div className="flex items-start">
-        {" "}
-        {/* Adjusted for flex display */}
-        <div className="column-1 flex-1">
-          {" "}
-          {/* Column 1 */}
-          <h1 className="m-4 text-[#E0FBFC] font-bold text-4xl">
-            Interactive Shopping List
-          </h1>
-          <NewItem onAddItem={handleAddItem} />
-          <ItemList items={items} onItemSelect={handleItemSelect} />
-        </div>
-        <div className="column-2 flex-1">
-          {" "}
-          {/* Column 2 */}
-          <MealIdeas ingredient={selectedItemName} />
-        </div>
+    <>
+      <div>
+        {user ? (
+          <div>
+            <Link className="underline m-4 text-[#E0FBFC]" href="/">
+              Return home{" "}
+            </Link>
+            <div className="flex items-start">
+              {" "}
+              {/* Adjusted for flex display */}
+              <div className="column-1 flex-1">
+                {" "}
+                {/* Column 1 */}
+                <h1 className="m-4 text-[#E0FBFC] font-bold text-4xl">
+                  Interactive Shopping List
+                </h1>
+                <NewItem onAddItem={handleAddItem} />
+                <ItemList items={items} onItemSelect={handleItemSelect} />
+              </div>
+              <div className="column-2 flex-1">
+                {" "}
+                {/* Column 2 */}
+                <MealIdeas ingredient={selectedItemName} />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="grid place-items-center h-screen">
+            <button
+              onClick={() => gitHubSignIn()}
+              className="rounded flex items-center gap-4 shadow-xl pl-3 bg-white"
+            >
+              <Image src={GitHubSvg} alt="Github logo" width={30} height={30} />
+              <span className="px-4 py-3 rounded">Sign in to Github</span>
+            </button>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 
