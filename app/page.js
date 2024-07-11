@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-// const LINK_STYLES = "flex flex-col text-[#55968F]  hover:underline m-2 text-lg";
-
 const LINK_STYLES = "flex flex-col text-[#E0FBFC] hover:underline m-2 text-lg";
 
 export default function Home() {
@@ -27,6 +25,9 @@ export default function Home() {
       </Link>
       <Link className={LINK_STYLES} href="week-7">
         Week 7: Display ingredients for each meal
+      </Link>
+      <Link className={LINK_STYLES} href="week-8">
+        Week 8: Firebase OAuth
       </Link>
     </main>
   );
