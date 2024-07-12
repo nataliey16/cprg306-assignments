@@ -16,12 +16,10 @@ export const AuthContextProvider = ({ children }) => {
 
   const gitHubSignIn = () => {
     const provider = new GithubAuthProvider();
-    //console.log(user);
     return signInWithPopup(auth, provider);
   };
 
   const firebaseSignOut = () => {
-    console.log(user);
     return signOut(auth);
   };
 

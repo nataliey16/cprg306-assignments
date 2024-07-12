@@ -10,10 +10,10 @@ import Image from "next/image";
 import GitHubSvg from "../../../public/svg/github.svg";
 
 const Page = () => {
-  const { user, gitHubSignIn } = useUserAuth();
   const [items, setItems] = useState(ItemsData);
   const [selectedItemName, setSelectedItemName] = useState("");
 
+  const { user, gitHubSignIn } = useUserAuth();
   //pass in a new object into the prev Items
   const handleAddItem = (newItem) => {
     setItems((prevItems) => [...prevItems, newItem]);
