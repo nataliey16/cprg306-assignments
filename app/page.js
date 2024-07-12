@@ -27,7 +27,7 @@ export default function Home() {
         Week 7: Display ingredients for each meal
       </Link>
       <Link className={LINK_STYLES} href="week-8">
-        Week 8: Firebase OAuth
+        Week 8: Shopping List with Authentication
       </Link>
     </main>
   );
