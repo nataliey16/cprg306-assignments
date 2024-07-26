@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useUserAuth } from "../_utils/auth-context";
 import Image from "next/image";
 import GitHubSvg from "../../../public/svg/github.svg";
-import { addItem } from "../_services/shopping-list-service";
+import { addItem, deleteItem } from "../_services/shopping-list-service";
 
 const Page = () => {
   const [items, setItems] = useState(ItemsData);
@@ -23,10 +23,20 @@ const Page = () => {
       quantity: 3,
     };
     try {
-      const itemId = await addItem(user.uid, item);
+      const itemId = await addItem(user?.uid, item);
       console.log(itemId);
     } catch (error) {
       console.error("Cannot add to the database");
+    }
+  };
+
+  const handleDelete = async () => {
+    const itemId = "8l9E2FySingYBd0wydki";
+    try {
+      await deleteItem(user?.uid, itemId);
+      console.log(itemId);
+    } catch (error) {
+      console.error("Cannot delete item from database");
     }
   };
 
@@ -57,6 +67,9 @@ const Page = () => {
             </Link>
             <button className="bg-red-200" onClick={handleAdd}>
               Add
+            </button>
+            <button className="bg-red-200" onClick={handleDelete}>
+              Delete
             </button>
             <div className="flex items-start">
               {" "}
