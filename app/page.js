@@ -29,6 +29,9 @@ export default function Home() {
       <Link className={LINK_STYLES} href="week-8">
         Week 8: Shopping List with Authentication
       </Link>
+      <Link className={LINK_STYLES} href="week-9">
+        Week 9: Add Cloud Firestore in Firebase
+      </Link>
     </main>
   );
 }
