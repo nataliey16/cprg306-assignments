@@ -3,7 +3,6 @@ import Link from "next/link";
 import MealIdeas from "./meal-ideas";
 import NewItem from "./new-item";
 import ItemList from "./item-list";
-// import ItemsData from "./items.json";
 import { useState, useEffect } from "react";
 import { useUserAuth } from "../_utils/auth-context";
 import Image from "next/image";
@@ -20,37 +19,31 @@ const Page = () => {
 
   const { user, gitHubSignIn } = useUserAuth();
 
-  const handleDelete = async () => {
-    const itemId = "8l9E2FySingYBd0wydki";
-    try {
-      await deleteItem(user?.uid, itemId);
-      console.log(itemId);
-    } catch (error) {
-      console.error("Cannot delete item from database");
-    }
-  };
-
   //pass in a new object into the prev Items
   const handleAddItem = async (item) => {
     try {
       const itemId = await addItem(user?.uid, item);
-      setItems((prevItems) => [...prevItems, { items, id: itemId }]);
+      setItems((prevItems) => [...prevItems, { ...item, id: itemId }]);
     } catch (error) {
       console.error("Cannot add to the database");
     }
   };
 
   const loadItems = async () => {
-    if (user) {
+    if (!user?.uid) return; // Ensure user is defined
+    try {
       const listOfItems = await getItems(user.uid);
-      console.log(listOfItems);
-
+      console.log("Fetched items:", listOfItems);
       setItems(listOfItems);
+    } catch (error) {
+      console.error("Error loading items:", error);
     }
   };
 
   useEffect(() => {
-    loadItems();
+    if (user) {
+      loadItems();
+    }
   }, [user]);
 
   const handleItemSelect = (itemName) => {

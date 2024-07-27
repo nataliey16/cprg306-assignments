@@ -15,11 +15,6 @@ const NewItem = ({ onAddItem }) => {
     e.preventDefault();
     //log item in the console
 
-    // Function to generate a random ID for new item
-    // const generateId = () => {
-    //   return Math.random().toString(36).subStr(2, 9) + Date.now().toString(36);
-    // };
-
     const item = { name, quantity, category };
 
     onAddItem(item);
