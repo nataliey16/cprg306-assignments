@@ -8,7 +8,23 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-export const getItems = async (userId) => {};
+export const getItems = async (userId) => {
+  const items = [];
+  const docRef = query(collection(db, "users", userId, "items"));
+  const documents = await getDocs(docRef);
+  if (!documents.empty) {
+    documents.forEach((document) => {
+      const item = {
+        id: document.id,
+        ...document.data(),
+      };
+      items.push(item);
+    });
+    return items;
+  } else {
+    return null;
+  }
+};
 
 export async function addItem(userId, item) {
   // to add an item, you need name, quantity and category

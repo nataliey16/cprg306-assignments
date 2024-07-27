@@ -8,13 +8,26 @@ import { useState } from "react";
 import { useUserAuth } from "../_utils/auth-context";
 import Image from "next/image";
 import GitHubSvg from "../../../public/svg/github.svg";
-import { addItem, deleteItem } from "../_services/shopping-list-service";
+import {
+  addItem,
+  deleteItem,
+  getItems,
+} from "../_services/shopping-list-service";
 
 const Page = () => {
   const [items, setItems] = useState(ItemsData);
+  // const [items, setItems] = useState([]]);
   const [selectedItemName, setSelectedItemName] = useState("");
 
   const { user, gitHubSignIn } = useUserAuth();
+
+  const handleGetItems = async () => {
+    const listOfItems = getItems(user.uid);
+    console.log(listOfItems);
+
+    //setItems will do in here
+    //setItems(listOfItems)
+  };
 
   const handleAdd = async () => {
     const item = {
@@ -70,6 +83,9 @@ const Page = () => {
             </button>
             <button className="bg-red-200" onClick={handleDelete}>
               Delete
+            </button>
+            <button className="bg-red-200" onClick={handleGetItems}>
+              Get Items
             </button>
             <div className="flex items-start">
               {" "}
