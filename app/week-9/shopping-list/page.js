@@ -2,9 +2,9 @@
 import Link from "next/link";
 import MealIdeas from "./meal-ideas";
 import NewItem from "./new-item";
-import ItemList from "./item-list";
-import ItemsData from "./items.json";
-import { useState } from "react";
+// import ItemList from "./item-list";
+// import ItemsData from "./items.json";
+import { useState, useEffect } from "react";
 import { useUserAuth } from "../_utils/auth-context";
 import Image from "next/image";
 import GitHubSvg from "../../../public/svg/github.svg";
@@ -15,19 +15,11 @@ import {
 } from "../_services/shopping-list-service";
 
 const Page = () => {
-  const [items, setItems] = useState(ItemsData);
-  // const [items, setItems] = useState([]]);
+  // const [items, setItems] = useState(ItemsData);
+  const [items, setItems] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState("");
 
   const { user, gitHubSignIn } = useUserAuth();
-
-  const handleGetItems = async () => {
-    const listOfItems = getItems(user.uid);
-    console.log(listOfItems);
-
-    //setItems will do in here
-    //setItems(listOfItems)
-  };
 
   const handleAdd = async () => {
     const item = {
@@ -53,9 +45,39 @@ const Page = () => {
     }
   };
 
+  // useEffect(() => {
+  //   loadItems();
+  // }, [items]);
+
+  // const handleGetItems = async () => {
+  //   const listOfItems = getItems(user.uid);
+  //   console.log(listOfItems);
+
+  //   //setItems will do in here
+  //   //setItems(listOfItems)
+  // };
+
+  // const loadItems = async () => {
+  //   const listOfItems = getItems(user.uid);
+  //   console.log(listOfItems);
+
+  //   //setItems will do in here
+  //   setItems(listOfItems);
+  // };
+
   //pass in a new object into the prev Items
-  const handleAddItem = async (newItem) => {
-    setItems((prevItems) => [...prevItems, newItem]);
+  const handleAddItem = async (item) => {
+    // setItems((prevItems) => [...prevItems, newItem]);
+
+    try {
+      const itemId = await addItem(user?.uid, item);
+      setItems((prevItems) => [...prevItems, { items, id: itemId }]);
+
+      console.log(itemId);
+      console.log(item);
+    } catch (error) {
+      console.error("Cannot add to the database");
+    }
   };
 
   const handleItemSelect = (itemName) => {
@@ -84,9 +106,9 @@ const Page = () => {
             <button className="bg-red-200" onClick={handleDelete}>
               Delete
             </button>
-            <button className="bg-red-200" onClick={handleGetItems}>
+            {/* <button className="bg-red-200" onClick={loadItems}>
               Get Items
-            </button>
+            </button> */}
             <div className="flex items-start">
               {" "}
               {/* Adjusted for flex display */}
@@ -97,7 +119,7 @@ const Page = () => {
                   Interactive Shopping List
                 </h1>
                 <NewItem onAddItem={handleAddItem} />
-                <ItemList items={items} onItemSelect={handleItemSelect} />
+                {/* <ItemList items={items} onItemSelect={handleItemSelect} /> */}
               </div>
               <div className="column-2 flex-1">
                 {" "}
